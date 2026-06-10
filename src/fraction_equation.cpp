@@ -41,7 +41,7 @@ void run_fraction_equation(std::ostream& log) {
     std::vector<EgcdRow> rows = extended_gcd_table(A, B, silent);
     EgcdRow ans = rows[rows.size() - 2];
 
-    log << "Задание 6. Цепная дробь и уравнение\n";
+    log << "6\n";
     log << "Вариант 5: " << A << "a + " << B << "b = " << D << "\n";
     log << "Алгоритм Евклида:\n";
     print_euclid_divisions(rows, log);
