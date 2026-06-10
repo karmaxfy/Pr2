@@ -50,7 +50,7 @@ void run_mitm_hughes(std::ostream& log) {
         alice_received += static_cast<char>(received);
     }
 
-    log << "Задание 5. Атака посередине на протокол Хьюза\n";
+    log << "5\n";//недоработан 
     log << "Сообщение Боба: " << message << "\n";
     log << "Ева подменила открытый ключ Алисы на свой.\n";
     log << "Ева прочитала: " << eve_read << "\n";
