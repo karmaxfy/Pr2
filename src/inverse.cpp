@@ -24,7 +24,7 @@ void run_inverse(std::ostream& log) {
     EgcdRow ans = rows[rows.size() - 2];
     int inverse = normalize_mod(ans.y, m);
 
-    log << "Задание 3. Нахождение c^(-1) mod m\n";
+    log << "3\n";
     log << "Дано: c = " << c << ", m = " << m << "\n";
     log << "Нужно найти такое число d, что " << c << " * d ≡ 1 (mod " << m << ").\n";
     log << "Алгоритм Евклида:\n";
