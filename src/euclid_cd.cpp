@@ -24,7 +24,7 @@ void run_euclid_cd(std::ostream& log) {
     EgcdRow ans = rows[rows.size() - 2];
     int d = normalize_mod(ans.y, m);
 
-    log << "Задание 2. Нахождение d из c*d mod m = 1\n";
+    log << "2\n";
     log << "Дано: c = " << c << ", m = " << m << "\n";
     log << "Чтобы найти d, решаем равенство Безу: m*u + c*v = НОД(m, c).\n";
     log << "Алгоритм Евклида:\n";
