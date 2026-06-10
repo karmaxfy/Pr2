@@ -29,8 +29,6 @@ int main(int argc, char* argv[]) {
         if (argc >= 2) {
             number = std::stoi(argv[1]);
         } else {
-            std::cout << "Практическая работа 2. Математические основы криптографии\n";
-            std::cout << "Вариант 5: Хьюз, уравнение 439a + 118b = 3\n";
             std::cout << "1 - Ферма и бинарное возведение\n";
             std::cout << "2 - c*d mod m = 1 через u и v\n";
             std::cout << "3 - обратное число c^(-1) mod m\n";
