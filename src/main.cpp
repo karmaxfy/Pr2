@@ -2,47 +2,103 @@
 #include "euclid_cd.h"
 #include "inverse.h"
 #include "hughes_file.h"
-#include "mitm_hughes.h"
+#include "mitm_attack.h"
 #include "fraction_equation.h"
-#include "message_tasks.h"
+#include "rf_crypto_standards.h"
 
+#include <clocale>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 
-static void run_program(int number, std::ostream& out) {
-    switch (number) {
-        case 1: run_fermat(out); break;
-        case 2: run_euclid_cd(out); break;
-        case 3: run_inverse(out); break;
-        case 4: run_hughes_file(out); break;
-        case 5: run_mitm_message(out); break;
-        case 6: run_fraction_equation(out); break;
-        case 7: run_standards_rf_message(out); break;
-        default: out << "Нет задания с таким номером.\n"; break;
+using namespace std;
+
+// Меню сделано через enum class, чтобы в switch не использовать непонятные числа.
+enum class MenuItem {
+    Exit = 0,
+    Fermat = 1,
+    Euclid = 2,
+    Inverse = 3,
+    HughesFile = 4,
+    MitmAttack = 5,
+    FractionEquation = 6,
+    RussianCryptoStandards = 7
+};
+
+static void run_menu_item(MenuItem item) {
+    switch (item) {
+        case MenuItem::Fermat:
+            run_fermat(cout);
+            break;
+        case MenuItem::Euclid:
+            run_euclid_cd(cout);
+            break;
+        case MenuItem::Inverse:
+            run_inverse(cout);
+            break;
+        case MenuItem::HughesFile:
+            run_hughes_file(cout);
+            break;
+        case MenuItem::MitmAttack:
+            run_mitm_attack(cout);
+            break;
+        case MenuItem::FractionEquation:
+            run_fraction_equation(cout);
+            break;
+        case MenuItem::RussianCryptoStandards:
+            run_rf_crypto_standards(cout);
+            break;
+        case MenuItem::Exit:
+            break;
+        default:
+            cout << "Такого пункта меню нет.\n";
+            break;
     }
 }
 
+static void print_menu() {
+    cout << "\n";
+    cout << "1. Теорема Ферма и разложение степени в двоичный вид\n";
+    cout << "2. Расширенный алгоритм Евклида для c*d mod m = 1\n";
+    cout << "3. Обратный элемент по модулю\n";
+    cout << "4. Протокол Хьюза для шифрования файла\n";
+    cout << "5. Атака посередине\n";
+    cout << "6. Цепная дробь и линейное уравнение\n";
+    cout << "7. Стандарты современной криптографии в РФ\n";
+    cout << "0. Выход\n";
+    cout << "> ";
+}
+
 int main(int argc, char* argv[]) {
+    setlocale(LC_ALL, "");
+
     try {
-        int number = 0;
+        // Оставлено для make run1, make run2 и т.д.
         if (argc >= 2) {
-            number = std::stoi(argv[1]);
-        } else {
-            std::cout << "1 - Ферма и бинарное возведение\n";
-            std::cout << "2 - c*d mod m = 1 через u и v\n";
-            std::cout << "3 - обратное число c^(-1) mod m\n";
-            std::cout << "4 - Хьюз и шифрование файла\n";
-            std::cout << "5 - сообщение: атака посередине\n";
-            std::cout << "6 - цепная дробь и уравнение\n";
-            std::cout << "7 - сообщение: стандарты криптографии в РФ\n";
-            std::cout << "Номер задания: ";
-            std::cin >> number;
+            int punkt = stoi(argv[1]);
+            run_menu_item(static_cast<MenuItem>(punkt));
+            return 0;
         }
-        run_program(number, std::cout);
-    } catch (const std::exception& error) {
-        std::cerr << "Ошибка: " << error.what() << "\n";
+
+        while (true) {
+            print_menu();
+
+            int punkt;
+            cin >> punkt;
+
+            if (!cin) {
+                cout << "Ошибка ввода.\n";
+                return 1;
+            }
+
+            if (static_cast<MenuItem>(punkt) == MenuItem::Exit) {
+                return 0;
+            }
+
+            run_menu_item(static_cast<MenuItem>(punkt));
+        }
+    } catch (const exception& error) {
+        cerr << "Ошибка: " << error.what() << "\n";
         return 1;
     }
-    return 0;
 }

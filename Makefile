@@ -1,27 +1,26 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -Iinclude
-SOURCES = $(wildcard src/*.cpp)
-TARGET = pr2
+TARGET = pr2_variant5
+SRC = src/main.cpp src/math_utils.cpp src/file_utils.cpp src/fermat.cpp src/euclid_cd.cpp src/inverse.cpp src/hughes_file.cpp src/mitm_attack.cpp src/fraction_equation.cpp src/rf_crypto_standards.cpp src/text_file.cpp
 
-all: $(TARGET)
+all:
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
-$(TARGET): $(SOURCES)
-	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(TARGET)
-
-run1: $(TARGET)
+run1: all
 	./$(TARGET) 1
-run2: $(TARGET)
+run2: all
 	./$(TARGET) 2
-run3: $(TARGET)
+run3: all
 	./$(TARGET) 3
-run4: $(TARGET)
+run4: all
 	./$(TARGET) 4
-run5: $(TARGET)
+run5: all
 	./$(TARGET) 5
-run6: $(TARGET)
+run6: all
 	./$(TARGET) 6
-run7: $(TARGET)
+run7: all
 	./$(TARGET) 7
 
 clean:
 	rm -f $(TARGET)
+	rm -f data/encrypted_hughes.txt data/decrypted.txt
