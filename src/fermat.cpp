@@ -37,7 +37,7 @@ void run_fermat(std::ostream& log) {
     int reduced_base = normalize_mod(a, p);
     int reduced_power = x;
 
-    log << "Задание 1. Вычисление a^x mod p\n";
+    log << "1\n";
     log << "Дано: " << a << "^" << x << " mod " << p << "\n";
     log << "Проверяем условия теоремы Ферма:\n";
     log << "p = " << p << (is_prime(p) ? " — простое число.\n" : " — не простое число.\n");
