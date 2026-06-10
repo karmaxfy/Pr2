@@ -60,7 +60,7 @@ void run_hughes_file(std::ostream& log) {
     }
     write_binary_file(decrypted_path, decrypted);
 
-    log << "Задание 4. Протокол Хьюза и шифрование файла\n";
+    log << "4\n";
     log << "Файл: " << input_path << "\n";
     log << "Параметры: p = " << p << ", g = " << g << ", закрытый ключ x = " << x << "\n";
     log << "Открытый ключ считается по формуле y = g^x mod p:\n";
